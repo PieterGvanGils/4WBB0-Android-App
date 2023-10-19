@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <!-- Wrap your existing child views in a LinearLayout -->
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <!-- Your existing child views go here -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <!-- CardView 1 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/analyticsCard"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+                    <TextView
+                        android:id="@+id/analyticsName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Data Analytics"
+                        android:textColor="@color/lavender"
+                        android:textSize="20sp" />
+                    <!-- Add other views (e.g., ImageView) here if needed -->
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- CardView 2 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/competitionCard"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/analyticsCard">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/competitionName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Competition with Friends"
+                        android:textColor="@color/lavender"
+                        android:textSize="20sp" />
+                    <!-- Add other views (e.g., ImageView) here if needed -->
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- CardView 3 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/notificationsCard"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/competitionCard">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/notificationsName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Notifications"
+                        android:textColor="@color/lavender"
+                        android:textSize="20sp" />
+                    <!-- Add other views (e.g., ImageView) here if needed -->
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--        &lt;!&ndash; Add the FrameLayout container for fragments with ID fragment_container &ndash;&gt;-->
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fragment_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+    </LinearLayout>
+
+</RelativeLayout>
