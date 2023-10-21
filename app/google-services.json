@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "341974839117",
-    "firebase_url": "https://wbb0-725ef-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "wbb0-725ef",
-    "storage_bucket": "wbb0-725ef.appspot.com"
+    "project_number": "213720582852",
+    "firebase_url": "https://smart-shower-database-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "smart-shower-database",
+    "storage_bucket": "smart-shower-database.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:341974839117:android:a603c1248c987b3c36d104",
+        "mobilesdk_app_id": "1:213720582852:android:29837e2bf9014408501791",
         "android_client_info": {
           "package_name": "com.example.myapplication2"
         }
@@ -16,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD9q4NLf7GQQeiWjmbXXQ4AnHuTxpd5eSs"
+          "current_key": "AIzaSyCTJhOPVpLkGcXMO6Hx3IY-EYj39iiimPo"
         }
       ],
       "services": {

@@ -63,10 +63,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     implementation("com.google.firebase:firebase-firestore:24.8.1")
     implementation("com.google.firebase:firebase-database:20.0.0")
-
-
-    // implementation for import core.API
-//    implementation("com.google.firebase:firebase-admin:8.0.0")
+    implementation("com.google.firebase:firebase-messaging")
 
     // implementation for notifications
     implementation("androidx.core:core:1.7.0")

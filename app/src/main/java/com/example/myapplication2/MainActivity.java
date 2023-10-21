@@ -29,13 +29,16 @@ import com.example.myapplication2.CompetitionFragment;
 import com.example.myapplication2.LogoutFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
-    //private NavController navController;
     private AppBarConfiguration appBarConfiguration;
     private NavController.OnDestinationChangedListener listener;
+
+    private DatabaseReference showeringDataRef;
 
     // Stevdza-San Tutorial
     @Override
@@ -61,6 +64,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //setup Firestore Database
         FirebaseApp.initializeApp(this);
+
+        // setup firebase for notifications
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        showeringDataRef = database.getReference("showering_data");
+        NotificationSender notificationSender = new NotificationSender(showeringDataRef);
+        notificationSender.startListeningForNotifications(this);
 
 //        if (savedInstanceState == null) {
 //            Log.d("SIS", "savedInstance is null");

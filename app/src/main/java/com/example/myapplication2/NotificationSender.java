@@ -5,66 +5,39 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.core.app.ActivityCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
 
-public class MyFirebaseMessagingService extends FirebaseMessagingService {
+public class NotificationSender {
 
     private static final String CHANNEL_ID = "channel_id";
 
-    @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
+    private DatabaseReference showeringDataRef;
 
-        // Check if the message contains data payload
-        if (remoteMessage.getData().size() > 0) {
-            // Handle the data payload of the received message
-            String message = remoteMessage.getData().get("message");
-            sendNotification(this,message);
-        }
+    public NotificationSender(DatabaseReference showeringDataRef) {
+        this.showeringDataRef = showeringDataRef;
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Log.d("onCreate", "onCreate is called");
-        // Static Testing Message
-        sendNotification(this, "This is a test notification from inside onCreate");
-        Log.d("Notification", "Test Notification send");
-
-        /// Get a reference to the 'showering_data' node
-        DatabaseReference showeringDataRef = FirebaseDatabase.getInstance().getReference("showering_data");
-
-        // Add a ChildEventListener to listen for new child additions
+    public void startListeningForNotifications(Context context) {
         showeringDataRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                 Log.d("addChildEventListner", "Listener activated!");
-                // to avoid input error 1st argument sendNotification
-                // Get the context of the listener class
-                Context context = MyFirebaseMessagingService.this;
 
-                // Get the values of the newly added session
                 String key = dataSnapshot.getKey();
                 int waterUsedLiters = dataSnapshot.child("water_used_liters").getValue(Integer.class);
                 int temperatureCelsius = dataSnapshot.child("temperature_celsius").getValue(Integer.class);
                 int durationMinutes = dataSnapshot.child("duration_minutes").getValue(Integer.class);
 
-                // Trigger the notification with the relevant data
                 String message = "New showering session - Water Used: " + waterUsedLiters + " liters, Temperature: " + temperatureCelsius + "°C, Duration: " + durationMinutes + " minutes";
                 sendNotification(context, message);
 
@@ -75,29 +48,28 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-                // Handle changes to existing children
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                // Handle removed children
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
-                // Handle when children change position
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle errors
-                Log.w("FirebaseError", "showeringDataRef:onCancelled", databaseError.toException());
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
 
-    public void sendNotification(Context context, String message) {
+    private void sendNotification(Context context, String message) {
         int notificationId = 1;
 
         Intent intent = new Intent(context, AnalyticsFragment.class);
@@ -125,14 +97,4 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         notificationManager.notify(notificationId, notificationBuilder.build());
     }
-
-
-    // TODO: implement somewhere
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        showeringDataRef.removeEventListener(childEventListener);
-//    }
-
 }
-
