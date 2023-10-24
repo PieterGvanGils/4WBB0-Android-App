@@ -56,6 +56,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.22")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22"))
+    implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
 
     // Add Firebase dependencies
     implementation(platform("com.google.firebase:firebase-bom:32.4.0"))

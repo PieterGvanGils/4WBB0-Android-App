@@ -5,17 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment" >
 
-    <!-- Wrap your existing child views in a LinearLayout -->
+    <!-- Wrap existing child views in a LinearLayout -->
     <LinearLayout
         android:layout_width="350dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
-
-        <!-- Your existing child views go here -->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -51,7 +49,16 @@
                         android:text="Data Analytics"
                         android:textColor="@color/lavender"
                         android:textSize="20sp" />
-                    <!-- Add other views (e.g., ImageView) here if needed -->
+
+                    <ImageView
+                        android:id="@+id/analyticsImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/analyticsName"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/dataanalyticsimage" />
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -82,7 +89,15 @@
                         android:text="Competition with Friends"
                         android:textColor="@color/lavender"
                         android:textSize="20sp" />
-                    <!-- Add other views (e.g., ImageView) here if needed -->
+
+                    <ImageView
+                        android:id="@+id/competitionImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/competitionName"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/competitionimage" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -113,17 +128,22 @@
                         android:text="Notifications"
                         android:textColor="@color/lavender"
                         android:textSize="20sp" />
-                    <!-- Add other views (e.g., ImageView) here if needed -->
+
+                    <ImageView
+                        android:id="@+id/notificationsImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/notificationsName"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/notificationsimage" />
+
                 </RelativeLayout>
+
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        &lt;!&ndash; Add the FrameLayout container for fragments with ID fragment_container &ndash;&gt;-->
-<!--        <FrameLayout-->
-<!--            android:id="@+id/fragment_container"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent" />-->
     </LinearLayout>
 
 </RelativeLayout>

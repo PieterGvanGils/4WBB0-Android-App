@@ -7,31 +7,45 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NotificationSender {
 
     private static final String CHANNEL_ID = "channel_id";
-
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth;
+    FirebaseUser user = mAuth.getInstance().getCurrentUser();
     private DatabaseReference showeringDataRef;
 
     public NotificationSender(DatabaseReference showeringDataRef) {
         this.showeringDataRef = showeringDataRef;
+        this.db = db;
     }
 
     public void startListeningForNotifications(Context context) {
         showeringDataRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d("addChildEventListner", "Listener activated!");
 
                 String key = dataSnapshot.getKey();
                 int waterUsedLiters = dataSnapshot.child("water_used_liters").getValue(Integer.class);
@@ -39,12 +53,12 @@ public class NotificationSender {
                 int durationMinutes = dataSnapshot.child("duration_minutes").getValue(Integer.class);
 
                 String message = "New showering session - Water Used: " + waterUsedLiters + " liters, Temperature: " + temperatureCelsius + "°C, Duration: " + durationMinutes + " minutes";
-                sendNotification(context, message);
+                String notificationHistoryMessage =  "Water Used: " + waterUsedLiters + " liters\n" +
+                        "Temperature: " + temperatureCelsius + "°C\n" +
+                        "Duration: " + durationMinutes + " minutes\n";
 
-                Log.d("NewSession", "Key: " + key);
-                Log.d("NewSession", "Water Used (Liters): " + waterUsedLiters);
-                Log.d("NewSession", "Temperature (Celsius): " + temperatureCelsius);
-                Log.d("NewSession", "Duration (Minutes): " + durationMinutes);
+                sendNotification(context, message);
+                saveNotificationToFirestore(key, notificationHistoryMessage);
             }
 
             @Override
@@ -97,4 +111,19 @@ public class NotificationSender {
 
         notificationManager.notify(notificationId, notificationBuilder.build());
     }
+
+    private void saveNotificationToFirestore(String key, String message) {
+        String username = user.getEmail();
+        Map<String, Object> notification = new HashMap<>();
+        notification.put(key, (message + "Date: " + new Date()));
+
+        // Create a reference to the document in the notificationsHistory collection
+        DocumentReference docRef = db.collection("notificationsHistory").document(username);
+
+        // Add field to document
+        docRef.update(notification)
+                .addOnSuccessListener(documentReference -> Log.d("NotificationSender", "Notification added to Firestore"))
+                .addOnFailureListener(e -> Log.e("NotificationSender", "Error adding notification to Firestore", e));
+    }
+
 }
