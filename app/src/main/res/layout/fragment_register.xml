@@ -8,7 +8,7 @@
     android:padding="15dp"
     android:gravity="center"
     android:layout_height="match_parent"
-    tools:context=".RegisterFragment">
+    tools:context=".Bin.RegisterFragment">
 
     <TextView
         android:text="@string/register"

@@ -1,6 +1,5 @@
-package com.example.myapplication2;
+package com.example.myapplication2.Bin;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,19 +15,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication2.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LoginFragment#newInstance} factory method to
+ * Use the {@link RegisterFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment {
+public class RegisterFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,7 +38,7 @@ public class LoginFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LoginFragment() {
+    public RegisterFragment() {
         // Required empty public constructor
     }
 
@@ -49,43 +48,44 @@ public class LoginFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginFragment.
+     * @return A new instance of fragment RegisterFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LoginFragment newInstance(String param1, String param2) {
-        LoginFragment fragment = new LoginFragment();
+    public static RegisterFragment newInstance(String param1, String param2) {
+        RegisterFragment fragment = new RegisterFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
+
     private TextInputEditText editTextEmail, editTextPassword;
-    private Button buttonLogin;
+    private Button buttonRegister;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
-    private TextView textView;
+    private TextView textViewLoginNow;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = view.findViewById(R.id.email);
         editTextPassword = view.findViewById(R.id.password);
-        buttonLogin = view.findViewById(R.id.btn_login);
+        buttonRegister = view.findViewById(R.id.btn_register);
         progressBar = view.findViewById(R.id.progressBar);
-        textView = view.findViewById(R.id.registerNow);
+        textViewLoginNow = view.findViewById(R.id.loginNow);
 
-        textView.setOnClickListener(new View.OnClickListener() {
+        textViewLoginNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Start the registration fragment or activity
-                // You can replace this with the appropriate code to navigate to the registration screen
+                // Start the login fragment or activity
+                // You can replace this with the appropriate code to navigate to the login screen
             }
         });
 
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
@@ -105,16 +105,13 @@ public class LoginFragment extends Fragment {
                     return;
                 }
 
-                mAuth.signInWithEmailAndPassword(email, password)
+                mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(requireContext(), "Login Successful.", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(requireContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    requireActivity().finish();
+                                    Toast.makeText(requireContext(), "Account created.", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(requireContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                                 }

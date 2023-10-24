@@ -1,4 +1,4 @@
-package com.example.myapplication2;
+package com.example.myapplication2.Bin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication2.Login;
+import com.example.myapplication2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.ktx.Firebase;
