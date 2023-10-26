@@ -50,22 +50,23 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment:2.7.3")
     implementation("androidx.navigation:navigation-ui:2.7.3")
+    implementation("com.google.firebase:firebase-messaging:23.3.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.22")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22"))
+    implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
 
     // Add Firebase dependencies
-    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     implementation("com.google.firebase:firebase-firestore:24.8.1")
-
-    // implementation for import core.API
-//    implementation("com.google.firebase:firebase-admin:8.0.0")
+    implementation("com.google.firebase:firebase-database:20.0.0")
+    implementation("com.google.firebase:firebase-messaging")
 
     // implementation for notifications
-    implementation("androidx.core:core:2.2.0")
+    implementation("androidx.core:core:1.7.0")
 
 }

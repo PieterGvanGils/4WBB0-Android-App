@@ -47,8 +47,11 @@ public class FriendsFragment extends Fragment {
     private List<String> friendGroups; // List to store friend groups
     private ArrayAdapter<String> friendGroupsAdapter;
 
-    private FirebaseFirestore db;
-    private CollectionReference friendGroupsRef;
+    // private FirebaseFirestore db;
+//    private CollectionReference friendGroupsRef;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference friendGroupsRef= db.collection("friendGroups");
 
     FirebaseAuth mAuth;
     // Initialize current user
@@ -59,11 +62,6 @@ public class FriendsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
-//        // Initialize current user
-//        FirebaseUser user = mAuth.getInstance().getCurrentUser();
-
-
-
         // Initialize UI elements
         editTextFriendGroupId = view.findViewById(R.id.editTextFriendGroupId);
         btnCreateFriendGroup = view.findViewById(R.id.btn_CreateFriendGroup);
@@ -73,9 +71,9 @@ public class FriendsFragment extends Fragment {
         btnAddFriend = view.findViewById(R.id.btn_AddFriend);
         listViewFriends = view.findViewById(R.id.listViewFriends);
 
-        // Initialize Firebase Firestore
-        db = FirebaseFirestore.getInstance();
-        friendGroupsRef = db.collection("friendGroups");
+//        // Initialize Firebase Firestore
+//        db = FirebaseFirestore.getInstance();
+//        friendGroupsRef = db.collection("friendGroups");
 
         // Initialize lists
         friends = new ArrayList<>();
@@ -137,6 +135,7 @@ public class FriendsFragment extends Fragment {
                                         "Failed to add friend: " + e.getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             });
+                    friendGroupsAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(requireContext(),
                             "Please enter a friend name and select a friend group",
@@ -148,14 +147,16 @@ public class FriendsFragment extends Fragment {
         // Load friend groups from Firestore
         loadFriendGroups();
 
+        // TODO: delete friends in listview and reload again
+
         return view;
     }
 
-    private void loadFriendGroups() {
+    public void loadFriendGroups() {
         friendGroupsRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (FriendGroup friendGroup : queryDocumentSnapshots.toObjects(FriendGroup.class)) {
                 friendGroups.add(friendGroup.getName());
-                Log.d("loadFriendGroup", "Friend group: " + friendGroup.getName());
+                //Log.d("loadFriendGroup", "Friend group: " + friendGroup.getName());
             }
             friendGroupsAdapter.notifyDataSetChanged();
         }).addOnFailureListener(e -> {
@@ -173,7 +174,7 @@ public class FriendsFragment extends Fragment {
                     List<String> memberIds = friendGroup.getMembers();
                     friends.clear();
                     for (String memberId : memberIds) {
-                        if (memberId != null) {
+                        if (memberId != null ) { // !memberId.equals(String.valueOf(user.getEmail()))
                             friends.add(memberId);
                         }
                     }
@@ -194,18 +195,18 @@ public class FriendsFragment extends Fragment {
     private void loadFriends() {
         friendGroupsRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (FriendGroup friendGroup : queryDocumentSnapshots.toObjects(FriendGroup.class)) {
-                Log.d("FriendGroup", "Friend group value: " + friendGroup);
+                //Log.d("FriendGroup", "Friend group value: " + friendGroup);
                     List<String> memberIds = friendGroup.getMembers();
                     for (String memberId : memberIds) {
                         if (memberId != null && !memberId.equals(String.valueOf(user.getEmail()))) {
-                            Log.d("memberID", "memberIDs: "+ memberId);
+                            //Log.d("memberID", "memberIDs: "+ memberId);
                             friends.add(memberId);
                         }
                     }
-                    Log.d("friends list", "friends list: " + friends);
+                    //Log.d("friends list", "friends list: " + friends);
                     ArrayAdapter<String> friendsAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, friends);
                     listViewFriends.setAdapter(friendsAdapter);
-                    Log.d("friendsAdapter", "friends adapter: " + friendsAdapter);
+                    //Log.d("friendsAdapter", "friends adapter: " + friendsAdapter);
                 }
             }).addOnFailureListener(e -> {
                 Toast.makeText(requireContext(),

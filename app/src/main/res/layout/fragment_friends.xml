@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- fragment_friend_group.xml -->
 
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="0dp">
 
         <!-- EditText to enter the friend group's name or ID -->
         <EditText
@@ -35,28 +36,13 @@
             android:text="Create Friend Group" />
 
 
-        <!-- Button to add a new friend to the group -->
-        <TextView
-            android:id="@+id/labelFriendGroup"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_above="@+id/dropdown_menu"
-            android:layout_below="@+id/btn_CreateFriendGroup"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="29dp"
-            android:importantForAccessibility="yes"
-            android:labelFor="@id/auto_complete_txt"
-            android:text="Select a friend group:" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dropdown_menu"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_CreateFriendGroup"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
 
@@ -88,15 +74,30 @@
             android:text="Add Friend" />
 
         <!-- ListView to display the list of friends -->
+
+        <TextView
+            android:id="@+id/labelAllFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_AddFriend"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="141dp"
+            android:text="All My Friends"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
         <ListView
             android:id="@+id/listViewFriends"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btn_AddFriend"
+            android:layout_below="@id/labelAllFriends"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp" />
 
     </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

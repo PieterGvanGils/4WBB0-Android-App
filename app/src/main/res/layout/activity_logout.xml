@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_height="match_parent"
-    tools:context=".Logout">
+    tools:context=".Bin.Logout">
 
     <TextView
         android:id="@+id/user_details"

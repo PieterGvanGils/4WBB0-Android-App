@@ -12,30 +12,21 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.myapplication2.HomeFragment;
-import com.example.myapplication2.SettingsFragment;
-import com.example.myapplication2.AnalyticsFragment;
-import com.example.myapplication2.FriendsFragment;
-import com.example.myapplication2.NotificationsFragment;
-import com.example.myapplication2.CompetitionFragment;
-import com.example.myapplication2.LogoutFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
-    //private NavController navController;
     private AppBarConfiguration appBarConfiguration;
     private NavController.OnDestinationChangedListener listener;
+
+    private DatabaseReference showeringDataRef;
 
     // Stevdza-San Tutorial
     @Override
@@ -62,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //setup Firestore Database
         FirebaseApp.initializeApp(this);
 
+        // setup firebase for notifications
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        showeringDataRef = database.getReference("showering_data");
+        NotificationSender notificationSender = new NotificationSender(showeringDataRef);
+        notificationSender.startListeningForNotifications(this);
+
 //        if (savedInstanceState == null) {
 //            Log.d("SIS", "savedInstance is null");
 //            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new HomeFragment()).commit();
@@ -80,8 +77,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (itemId == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new HomeFragment()).commit();
 
-        } else if (itemId == R.id.nav_settings) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new SettingsFragment()).commit();
+        } else if (itemId == R.id.nav_notifications) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new NotificationsFragment()).commit();
 
         } else if (itemId == R.id.nav_analytics) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new AnalyticsFragment()).commit();
@@ -118,9 +115,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
 
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        if (!navController.navigateUp()) {
-//            super.onBackPressed();
-//        }
+        NavController navController = Navigation.findNavController(this, R.id.nav_graph);
+        if (!navController.navigateUp()) {
+            super.onBackPressed();
+        }
     }
 }

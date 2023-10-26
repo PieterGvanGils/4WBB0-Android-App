@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Navigation Drawer</string>
+    <string name="app_name">Smart Shower</string>
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -56,4 +56,5 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_notificationshandler">NotificationshandlerActivity</string>
 </resources>

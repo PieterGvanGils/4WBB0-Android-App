@@ -26,9 +26,6 @@
         <action
             android:id="@+id/action_homeFragment_to_friendsFragment"
             app:destination="@id/friendsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -75,15 +72,6 @@
         android:label="FriendsFragment" >
         <action
             android:id="@+id/action_friendsFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.myapplication2.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
-        <action
-            android:id="@+id/action_settingsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
