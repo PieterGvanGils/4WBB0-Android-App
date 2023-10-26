@@ -32,6 +32,11 @@
             android:icon="@drawable/nav_notifications"
             android:title="Notifications"/>
 
+        <item
+            android:id="@+id/nav_information"
+            android:icon="@drawable/nav_information"
+            android:title="Information"/>
+
 
         <item
             android:id="@+id/nav_logout"

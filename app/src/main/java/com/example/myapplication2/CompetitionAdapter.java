@@ -8,9 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication2.CompetitionItem;
-import com.example.myapplication2.R;
-
 import java.util.List;
 
 public class CompetitionAdapter extends RecyclerView.Adapter<CompetitionAdapter.CompetitionViewHolder> {
@@ -58,13 +55,4 @@ public class CompetitionAdapter extends RecyclerView.Adapter<CompetitionAdapter.
         }
     }
 }
-
-//    @Override
-//    public void onBindViewHolder(@NonNull CompetitionViewHolder holder, int position) {
-//        CompetitionItem currentItem = rankings.get(position);
-//
-//        holder.rankTextView.setText(String.valueOf(currentItem.getRank()));
-//        holder.usernameTextView.setText(currentItem.getUsername());
-//        holder.waterUsedTextView.setText(String.valueOf(currentItem.getAverageWaterUsed()));
-//    }
 

@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -210,6 +211,11 @@ public class CompetitionFragment extends Fragment {
                             for (int i = 0; i < sortedAverages.size(); i++) {
                                 String username = sortedAverages.get(i).getKey();
                                 double avgWaterUsed = sortedAverages.get(i).getValue();
+
+                                // Rounding to two decimal places
+                                DecimalFormat df = new DecimalFormat("#.##");
+                                avgWaterUsed = Double.parseDouble(df.format(avgWaterUsed));
+
                                 int rank = i + 1;
                                 CompetitionItem item = new CompetitionItem(rank, username, avgWaterUsed);
                                 competitionItems.add(item);

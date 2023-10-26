@@ -19,42 +19,41 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
-    </string>
+
     <string name="title_activity_login">Login</string>
     <string name="title_activity_notificationshandler">NotificationshandlerActivity</string>
+
+    <string name="intro_text">Even in a ‘water-rich’ country like New Zealand, some cities could face water shortages this summer
+        Published: December 21, 2020 11.23pm CET</string>
+
+    <string name="first_alinea">After eight months of drought rules, Auckland finally relaxed water restrictions last week, but as New Zealand heads into another La Niña summer, other cities can expect serious water shortages both now and in the future.
+Although this summer’s projected rainfall should keep Auckland’s water supply levels sustainable in the short term, Wellington could be running dry within the next six years.
+For both cities, addressing the gap in water supply and demand is an immediate and ongoing problem. Growing populations and increasingly variable climate conditions, combined with ageing infrastructure, mean local authorities will have to think about how they can either increase supply or change patterns of consumption.
+In a new working paper, we explore the merits and limitations of options available to policymakers to help navigate the changing water landscape.
+
+    </string>
+
+
+    <string name="second_alinea">Policy solutions to address water (short)falls
+For two of New Zealand’s largest cities, Auckland and Wellington, curbing demand is likely to be a more cost-effective approach than increasing water supply. Building reservoirs or constructing desalination plants is costly compared with adopting a range of targeted policy instruments that could encourage a change in individual use.
+The benefits of taking a multi-faceted policy approach to curbing demand is evident when comparing water consumption patterns in Auckland and Wellington.
+Aucklanders had water meters installed in the 1990s and are charged per unit of water consumed. They use 30% less water per person than Wellington users, who don’t have meters and are charged a flat rate for use.
+Coupled with this, Auckland Council has run targeted campaigns to educate users about ways to conserve water and household water bills include information about use patterns that are designed to “nudge” users towards conservation.
+In other regions of New Zealand, the merits of a cost-driven approach are also clear. The Kāpiti Coast in the lower North Island has had a 26% reduction in water use since water meters, pricing and targeted education campaigns were introduced in 2014.
+The evidence suggests that a policy approach that combines pricing incentives with education campaigns and regulation encourages users to conserve water.
+Looking ahead to warmer and drier summers
+However, even with the implementation of a range of water-saving policies, New Zealand city dwellers are not achieving the reductions needed to close the demand gap, particularly given the projections of warmer, drier summers. Most cities will need to adopt further policy changes.
+
+
+    </string>
+
+    <string name="third_alinea">The patterns of water consumption in Australia’s two largest cities, Melbourne and Sydney, provide some insight into how further behavioural changes could be achieved in New Zealand.
+First, Australia’s arid climate leaves few in doubt about water’s value and its scarcity. Second, this is reinforced through higher price signals, some of which rise and fall with dam levels. The result is that Melburnians, who pay progressively more per litre the more water they use, use 150 litres per person per day. Sydneysiders, who until recently paid a flat price for residential water, use 210 litres per person per day.
+For New Zealand policymakers, the challenge lies not only in bringing about changes in the choices water users make through prices that more accurately reflect scarcity, but also in engineering a shift in values around water consumption. For too long, New Zealanders have thought the country is water-rich, ignoring the fact this applies only to certain regions and seasons.
+Achieving a long-term shift in behaviour will require an acknowledgement that values influence policy and vice versa. For most cities, the starting point in this transition will be identifying targeted policy options to reduce the growing supply-demand gap and engender a shift in values.
+For Auckland, this might mean reviewing the pricing structures that determine patterns of water use. For Wellington, the most cost-effective approach is likely to be the introduction of meters and volumetric pricing.
+For residents of all urban areas, internalising the fact that water is scarce can’t come soon enough.
+
+    </string>
+
 </resources>

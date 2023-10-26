@@ -1,5 +1,8 @@
 package com.example.myapplication2;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +14,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NotificationSender notificationSender = new NotificationSender(showeringDataRef);
         notificationSender.startListeningForNotifications(this);
 
+
 //        if (savedInstanceState == null) {
 //            Log.d("SIS", "savedInstance is null");
 //            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new HomeFragment()).commit();
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new NotificationsFragment()).commit();
 
         } else if (itemId == R.id.nav_analytics) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new AnalyticsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new BarChartFragment()).commit();
 
         } else if (itemId == R.id.nav_competition) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new CompetitionFragment()).commit();
@@ -89,7 +90,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (itemId == R.id.nav_friends) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new FriendsFragment()).commit();
 
-        } else if (itemId == R.id.nav_logout) {
+        } else if (itemId == R.id.nav_information) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new InformationFragment()).commit();
+
+        }else if (itemId == R.id.nav_logout) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new LogoutFragment()).commit();
 
         }
