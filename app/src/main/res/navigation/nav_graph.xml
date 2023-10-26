@@ -12,9 +12,6 @@
         tools:layout="@layout/fragment_home">
         <!-- Define actions to other fragments -->
         <action
-            android:id="@+id/action_home_to_analytics"
-            app:destination="@id/analyticsFragment" />
-        <action
             android:id="@+id/action_home_to_competition"
             app:destination="@id/competitionFragment" />
         <action
@@ -26,16 +23,12 @@
         <action
             android:id="@+id/action_homeFragment_to_friendsFragment"
             app:destination="@id/friendsFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/analyticsFragment"
-        android:name="com.example.myapplication2.AnalyticsFragment"
-        android:label="AnalyticsFragment"
-        tools:layout="@layout/fragment_analytics" >
         <action
-            android:id="@+id/action_analyticsFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_homeFragment_to_barChartFragment"
+            app:destination="@id/barChartFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
     </fragment>
 
     <fragment
@@ -72,6 +65,22 @@
         android:label="FriendsFragment" >
         <action
             android:id="@+id/action_friendsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/barChartFragment"
+        android:name="com.example.myapplication2.BarChartFragment"
+        android:label="BarChartFragment" >
+        <action
+            android:id="@+id/action_barChartFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="com.example.myapplication2.InformationFragment"
+        android:label="InformationFragment" >
+        <action
+            android:id="@+id/action_informationFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

@@ -90,7 +90,7 @@ public class NotificationSender {
     private void sendNotification(Context context, String message) {
         int notificationId = 1;
 
-        Intent intent = new Intent(context, AnalyticsFragment.class);
+        Intent intent = new Intent(context, NotificationsFragment.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
 

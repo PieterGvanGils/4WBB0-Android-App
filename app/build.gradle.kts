@@ -69,4 +69,7 @@ dependencies {
     // implementation for notifications
     implementation("androidx.core:core:1.7.0")
 
+    // implementation for bar chart
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 }
