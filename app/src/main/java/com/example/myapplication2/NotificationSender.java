@@ -44,19 +44,25 @@ public class NotificationSender {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
 
-                String key = dataSnapshot.getKey();
-                double waterUsedLiters = dataSnapshot.child("water_used_liters").getValue(Integer.class);
-                double temperatureCelsius = dataSnapshot.child("temperature_celsius").getValue(Integer.class);
-                double durationMinutes = dataSnapshot.child("duration_minutes").getValue(Integer.class);
+                if (dataSnapshot.child("water_used_liters").getValue() != null
+                        && dataSnapshot.child("temperature_celsius").getValue() != null
+                        && dataSnapshot.child("duration_minutes").getValue() != null) {
+                    String key = dataSnapshot.getKey();
+                    double waterUsedLiters = dataSnapshot.child("water_used_liters").getValue(Double.class);
+                    double temperatureCelsius = dataSnapshot.child("temperature_celsius").getValue(Double.class);
+                    double durationMinutes = dataSnapshot.child("duration_minutes").getValue(Double.class);
 
-                String message = "New showering session - Water Used: " + waterUsedLiters + " liters, Temperature: " + temperatureCelsius + "°C, Duration: " + durationMinutes + " minutes";
-                String notificationHistoryMessage =  "Water Used: " + waterUsedLiters + " liters\n" +
-                        "Temperature: " + temperatureCelsius + "°C\n" +
-                        "Duration: " + durationMinutes + " minutes\n";
+                    String message = "Water Used: " + waterUsedLiters + " liters, Temperature: " + temperatureCelsius + "°C, Duration: " + durationMinutes + " minutes";
+                    String notificationHistoryMessage =  "Water Used: " + waterUsedLiters + " liters\n" +
+                            "Temperature: " + temperatureCelsius + "°C\n" +
+                            "Duration: " + durationMinutes + " minutes\n";
 
-                sendNotification(context, message);
-                saveNotificationToFirestore(key, notificationHistoryMessage);
-                updateShowerData(waterUsedLiters, temperatureCelsius);
+                    sendNotification(context, message);
+                    saveNotificationToFirestore(key, notificationHistoryMessage);
+                    updateShowerData(waterUsedLiters, temperatureCelsius);
+                } else {
+                    Log.e("NotificationSender", "One of the values is null");
+                }
             }
 
             @Override
@@ -90,7 +96,7 @@ public class NotificationSender {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.nav_notificationmessage)
-                .setContentTitle("Notification Title")
+                .setContentTitle("New shower data available!")
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent);
