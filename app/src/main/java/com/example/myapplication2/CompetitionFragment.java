@@ -67,7 +67,6 @@ public class CompetitionFragment extends Fragment {
         // Set up the listener for the AutoCompleteTextView
         autoCompleteTextViewCompetition.setOnItemClickListener((adapterView, view, i, l) -> {
             String selectedFriendGroup = (String) adapterView.getItemAtPosition(i);
-            Log.d("selected friend group", selectedFriendGroup);
             showRanking(selectedFriendGroup);
         });
 
@@ -84,7 +83,6 @@ public class CompetitionFragment extends Fragment {
                     for (DocumentSnapshot document : queryDocumentSnapshots) {
                         String groupName = document.getString("name");
                         friendGroups.add(groupName);
-                        Log.d("fetchFriendGroups", groupName);
                     }
                     updateAutoCompleteTextView();
                 })
@@ -112,7 +110,6 @@ public class CompetitionFragment extends Fragment {
                             int sessions = document.getLong("total sessions").intValue();
                             double totalWaterUsed = document.getDouble("total water used");
                             double averageWaterUsed = totalWaterUsed / sessions;
-                            Log.d("retrieveAverageWaterUsed", String.valueOf(averageWaterUsed));
                             listener.onComplete(Tasks.forResult(averageWaterUsed));
                         } else {
                             Log.d("No such document!", "No such document exists for the username: " + username);
@@ -126,7 +123,6 @@ public class CompetitionFragment extends Fragment {
     }
 
     public void showRanking(String selectedFriendGroup) {
-        Log.d("showRanking", "show ranking initialized!");
         if (selectedFriendGroup == null || selectedFriendGroup.isEmpty()) {
             Log.d("showRanking", "Selected friend group is empty or null");
             return;
@@ -150,13 +146,10 @@ public class CompetitionFragment extends Fragment {
                                         try {
                                             if (task.isSuccessful()) {
                                                 double averageWaterUsed = task.getResult();
-                                                Log.d("showRanking", "member: " + member + " average water used: " + averageWaterUsed);
                                                 averagesMap.put(member, averageWaterUsed);
                                                 int currentCount = count.incrementAndGet();
                                                 if (currentCount == members.size()) {
-                                                    Log.d("before displayrankings called", averagesMap.toString());
                                                     displayRankings(new ArrayList<>(averagesMap.keySet()), competitionItems);
-                                                    Log.d("displayrankings input", averagesMap.keySet().toString());
                                                 }
                                             } else {
                                                 Log.d("Error", "Error retrieving average water used: " + task.getException());
@@ -183,19 +176,14 @@ public class CompetitionFragment extends Fragment {
 
 
     private void displayRankings(List<String> members, List<CompetitionItem> competitionItems) {
-        Log.d("display rankings in method input", members.toString());
-        Log.d("displayRankings", "display rankings initialized!");
         Map<String, Double> averagesMap = new HashMap<>();
         AtomicInteger completedTasks = new AtomicInteger(0);
 
         for (String member : members) {
-            Log.d("members", member);
             try {
-                Log.d("try", "is trying");
                 retrieveAverageWaterUsed(member, new OnCompleteListener<Double>() {
                     @Override
                     public void onComplete(@NonNull Task<Double> task) {
-                        Log.d("onComplete", "onComplete is executed");
                         if (task.isSuccessful()) {
                             double averageWaterUsed = task.getResult();
                             averagesMap.put(member, averageWaterUsed);
@@ -219,7 +207,6 @@ public class CompetitionFragment extends Fragment {
                                 int rank = i + 1;
                                 CompetitionItem item = new CompetitionItem(rank, username, avgWaterUsed);
                                 competitionItems.add(item);
-                                Log.d("Rank " + rank, username + " - " + avgWaterUsed);
                             }
                             competitionAdapter.notifyDataSetChanged();
                         }

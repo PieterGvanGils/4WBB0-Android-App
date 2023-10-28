@@ -1,7 +1,6 @@
 package com.example.myapplication2;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,19 +15,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-//import com.google.api.core.ApiFuture;
-//import com.google.cloud.firestore.WriteResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,12 +36,10 @@ public class FriendsFragment extends Fragment {
     private Button btnAddFriend;
     private ListView listViewFriends;
 
-    private List<String> friends; // List to store friends
-    private List<String> friendGroups; // List to store friend groups
+    private List<String> friends;
+    private List<String> friendGroups;
     private ArrayAdapter<String> friendGroupsAdapter;
 
-    // private FirebaseFirestore db;
-//    private CollectionReference friendGroupsRef;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference friendGroupsRef= db.collection("friendGroups");
@@ -70,10 +61,6 @@ public class FriendsFragment extends Fragment {
         editTextFriendName = view.findViewById(R.id.editTextFriendName);
         btnAddFriend = view.findViewById(R.id.btn_AddFriend);
         listViewFriends = view.findViewById(R.id.listViewFriends);
-
-//        // Initialize Firebase Firestore
-//        db = FirebaseFirestore.getInstance();
-//        friendGroupsRef = db.collection("friendGroups");
 
         // Initialize lists
         friends = new ArrayList<>();
@@ -146,9 +133,6 @@ public class FriendsFragment extends Fragment {
 
         // Load friend groups from Firestore
         loadFriendGroups();
-
-        // TODO: delete friends in listview and reload again
-
         return view;
     }
 
@@ -156,7 +140,6 @@ public class FriendsFragment extends Fragment {
         friendGroupsRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (FriendGroup friendGroup : queryDocumentSnapshots.toObjects(FriendGroup.class)) {
                 friendGroups.add(friendGroup.getName());
-                //Log.d("loadFriendGroup", "Friend group: " + friendGroup.getName());
             }
             friendGroupsAdapter.notifyDataSetChanged();
         }).addOnFailureListener(e -> {
@@ -174,11 +157,11 @@ public class FriendsFragment extends Fragment {
                     List<String> memberIds = friendGroup.getMembers();
                     friends.clear();
                     for (String memberId : memberIds) {
-                        if (memberId != null ) { // !memberId.equals(String.valueOf(user.getEmail()))
+                        if (memberId != null ) {
                             friends.add(memberId);
                         }
                     }
-                    // TODO: make sure that not only the first item of 'friends' is displayed in the listview
+
                     ArrayAdapter<String> friendsAdapter = new ArrayAdapter<>(requireContext(),
                             android.R.layout.simple_list_item_1, friends);
                     listViewFriends.setAdapter(friendsAdapter);
@@ -195,18 +178,14 @@ public class FriendsFragment extends Fragment {
     private void loadFriends() {
         friendGroupsRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (FriendGroup friendGroup : queryDocumentSnapshots.toObjects(FriendGroup.class)) {
-                //Log.d("FriendGroup", "Friend group value: " + friendGroup);
                     List<String> memberIds = friendGroup.getMembers();
                     for (String memberId : memberIds) {
                         if (memberId != null && !memberId.equals(String.valueOf(user.getEmail()))) {
-                            //Log.d("memberID", "memberIDs: "+ memberId);
                             friends.add(memberId);
                         }
                     }
-                    //Log.d("friends list", "friends list: " + friends);
                     ArrayAdapter<String> friendsAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, friends);
                     listViewFriends.setAdapter(friendsAdapter);
-                    //Log.d("friendsAdapter", "friends adapter: " + friendsAdapter);
                 }
             }).addOnFailureListener(e -> {
                 Toast.makeText(requireContext(),

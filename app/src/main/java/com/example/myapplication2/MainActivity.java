@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DatabaseReference showeringDataRef;
 
-    // Stevdza-San Tutorial
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavController navController = navHostFragment.getNavController();
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        Toolbar toolbar = findViewById(R.id.toolbar); //Ignore red line errors
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -55,21 +54,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // setup firebase for notifications
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        showeringDataRef = database.getReference("showering_data");
+        showeringDataRef = database.getReference("sessions");
         NotificationSender notificationSender = new NotificationSender(showeringDataRef);
         notificationSender.startListeningForNotifications(this);
-
-
-//        if (savedInstanceState == null) {
-//            Log.d("SIS", "savedInstance is null");
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new HomeFragment()).commit();
-//            navigationView.setCheckedItem(R.id.nav_home);
-//        }
     }
-
-
-
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
