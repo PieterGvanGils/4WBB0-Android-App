@@ -21,11 +21,6 @@ public class Friend {
         return email;
     }
 
-//    @PropertyName("name")
-//    public void setName(String name) {
-//        this.email = name;
-//    }
-
     @PropertyName("friendGroup")
     public String getFriendGroup() {
         return friendGroup;

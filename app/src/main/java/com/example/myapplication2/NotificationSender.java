@@ -44,12 +44,12 @@ public class NotificationSender {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
 
-                if (dataSnapshot.child("water_used_liters").getValue() != null
-                        && dataSnapshot.child("temperature_celsius").getValue() != null
-                        && dataSnapshot.child("duration_minutes").getValue() != null) {
+                if (dataSnapshot.child("duration_minutes").getValue() != null
+                        && dataSnapshot.child("temperature_mean").getValue() != null
+                        && dataSnapshot.child("pressure_mean").getValue() != null) {
                     String key = dataSnapshot.getKey();
-                    double waterUsedLiters = dataSnapshot.child("water_used_liters").getValue(Double.class);
-                    double temperatureCelsius = dataSnapshot.child("temperature_celsius").getValue(Double.class);
+                    double waterUsedLiters = dataSnapshot.child("pressure_mean").getValue(Double.class);
+                    double temperatureCelsius = dataSnapshot.child("temperature_mean").getValue(Double.class);
                     double durationMinutes = dataSnapshot.child("duration_minutes").getValue(Double.class);
 
                     String message = "Water Used: " + waterUsedLiters + " liters, Temperature: " + temperatureCelsius + "°C, Duration: " + durationMinutes + " minutes";
